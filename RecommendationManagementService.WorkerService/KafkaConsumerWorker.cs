@@ -1,5 +1,7 @@
 ﻿using Confluent.Kafka;
+using Microsoft.Extensions.Options;
 using RecommendationManagementService.Business.Interface;
+using RecommendationManagementService.Core.AppSettings;
 
 namespace RecommendationManagementService.WorkerService
 {
@@ -11,15 +13,20 @@ namespace RecommendationManagementService.WorkerService
         private readonly ILogger<KafkaConsumerWorker> _logger;
         private readonly IMessageHandler _messageHandler;
 
-        public KafkaConsumerWorker(IMessageHandler messageHandler, ILogger<KafkaConsumerWorker> logger)
+        public KafkaConsumerWorker(IOptions<KafkaSettings> kafkaSettings, IMessageHandler messageHandler, ILogger<KafkaConsumerWorker> logger)
         {
             _messageHandler = messageHandler;
             _logger = logger;
 
             _consumerConfig = new ConsumerConfig
             {
-                BootstrapServers = "localhost:9092",
+                BootstrapServers = kafkaSettings.Value.BootstrapServers,
                 GroupId = "recommendation-management-service",
+                SecurityProtocol = SecurityProtocol.Plaintext,
+                //SecurityProtocol = kafkaSettings.Value.SecurityProtocol,
+                //SaslMechanism = kafkaSettings.Value.SaslMechanism,
+                //SaslUsername = kafkaSettings.Value.SaslUsername,
+                //SaslPassword = kafkaSettings.Value.SaslPassword
                 AutoOffsetReset = AutoOffsetReset.Earliest
             };
 

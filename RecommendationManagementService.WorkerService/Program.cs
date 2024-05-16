@@ -10,6 +10,8 @@ using RecommendationManagementService.WorkerService;
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((hostContext, services) =>
     {
+        services.Configure<KafkaSettings>(hostContext.Configuration.GetSection("Kafka"));
+        services.Configure<KafkaTopics>(hostContext.Configuration.GetSection("KafkaTopics"));
         services.Configure<Auth0Settings>(hostContext.Configuration.GetSection("Auth0"));
         services.Configure<MongoDbSettings>(hostContext.Configuration.GetSection("MongoDb"));
 
