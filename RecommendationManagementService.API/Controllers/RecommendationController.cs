@@ -14,7 +14,7 @@ namespace RecommendationManagementService.API.Controllers
         }
 
         [HttpGet("daily-recommendation")]
-        public async Task<IActionResult> GetUserPosts()
+        public async Task<IActionResult> GetDailyRecommendation()
         {
             try
             {
