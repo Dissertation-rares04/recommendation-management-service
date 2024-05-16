@@ -20,7 +20,7 @@ namespace RecommendationManagementService.Business.Implementation
 
             // Step 1: Identify the most common topic among userRecentPosts
             var mostCommonTopic = userRecentPosts
-                .GroupBy(post => post.Topic)
+                .GroupBy(post => post.Category)
                 .OrderByDescending(group => group.Count())
                 .First().Key;
 
@@ -28,7 +28,7 @@ namespace RecommendationManagementService.Business.Implementation
             var recentPosts = await _recommendationServiceDataAccess.GetRecentPostsByTopic(_userResolver.UserId);
 
             // Step 2: Filter recentPosts by the most common topic
-            var postsWithCommonTopic = recentPosts.Where(post => post.Topic == mostCommonTopic);
+            var postsWithCommonTopic = recentPosts.Where(post => post.Category == mostCommonTopic);
 
             // Define weights for views, comments, and likes
             var weights = new Dictionary<string, double>

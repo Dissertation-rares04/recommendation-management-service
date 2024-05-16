@@ -11,7 +11,7 @@ namespace RecommendationManagementService.Core.Model
 
         public string UserId { get; set; }
 
-        public string Topic { get; set; }
+        public string Category { get; set; }
 
         public string Title { get; set; }
 
