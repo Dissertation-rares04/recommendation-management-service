@@ -1,6 +1,6 @@
 ﻿namespace RecommendationManagementService.Core.Model
 {
-    public class Dislike
+    public class Interaction
     {
         public string UserId { get; set; }
 

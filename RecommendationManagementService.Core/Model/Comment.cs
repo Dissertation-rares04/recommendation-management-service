@@ -17,6 +17,6 @@ namespace RecommendationManagementService.Core.Model
 
         public string Content { get; set; }
 
-        public List<Like> Likes { get; set; }
+        public List<Interaction> Interactions { get; set; }
     }
 }

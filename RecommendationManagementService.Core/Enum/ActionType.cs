@@ -7,9 +7,6 @@
         POST_DELETED = 3,
         COMMENT_CREATED = 4,
         COMMENT_UPDATED = 5,
-        COMMENT_DELETED = 6,
-        POST_VIEWED = 7,
-        POST_LIKED = 8,
-        POST_DISLIKED = 9,
+        COMMENT_DELETED = 6
     }
 }
