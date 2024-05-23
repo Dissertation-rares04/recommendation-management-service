@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using RecommendationManagementService.Core;
 using RecommendationManagementService.Core.AppSettings;
 using RecommendationManagementService.Core.Enum;
 using RecommendationManagementService.Core.Model;
@@ -46,7 +47,7 @@ namespace RecommendationManagementService.Data.Implementation
                 .Select(group => new
                 {
                     Category = group.Key,
-                    Rating = group.Sum(x => x.Action == ActionType.POST_LIKED ? 2 : 1)
+                    Rating = group.Sum(RecommendationHelper.RatingSelector())
                 })
                 .OrderByDescending(x => x.Rating)
                 .Take(1);
@@ -64,7 +65,7 @@ namespace RecommendationManagementService.Data.Implementation
                 .Select(group => new 
                 {
                     PostId = group.Key,
-                    Rating = group.Sum(x => x.Action == ActionType.POST_LIKED ? 2 : 1)
+                    Rating = group.Sum(RecommendationHelper.RatingSelector())
                 })
                 .OrderByDescending(x => x.Rating)
                 .Take(5);

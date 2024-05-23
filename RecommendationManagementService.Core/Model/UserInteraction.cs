@@ -12,6 +12,6 @@ namespace RecommendationManagementService.Core.Model
 
         public long Timestamp { get; set; }
 
-        public ActionType Action { get; set; }
+        public InteractionType InteractionType { get; set; }
     }
 }

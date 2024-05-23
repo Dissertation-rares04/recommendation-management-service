@@ -11,21 +11,14 @@ namespace RecommendationManagementService.Core.Model
 
         public string UserId { get; set; }
 
-        public string Category { get; set; }
-
         public string Title { get; set; }
+
+        public string Category { get; set; }
 
         public string Content { get; set; }
 
-        public List<View> Views { get; set; }
-        public int ViewsCount { get; set; }
+        public List<Media> Medias { get; set; } = new List<Media>();
 
-        public List<Like> Likes { get; set; }
-        public int LikesCount { get; set; }
-
-        public List<Dislike> Dislikes { get; set; }
-        public int DislikesCount { get; set; }
-
-        public List<Media> Medias { get; set; }
+        public List<Interaction> Interactions { get; set; } = new List<Interaction>();
     }
 }
